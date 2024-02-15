@@ -5,16 +5,29 @@ function AddTodo({addTodo}){
     function handleChange (e) {
         const inputValue = e.target.value;
         setValue(inputValue)
-        console.log(inputValue);
+    }
+
+    function handleClick() {
+        if (value.length) {
+            addTodo(value)
+            setValue("");
+        }
+    }
+    function handleKeDown(e) {
+        if (e.code === 'Enter' && value.length) {
+            addTodo(value);
+            setValue("");
+        }
     }
     return (
         <div className="d-flex flex-row justify-content-center align-items-center">
             <input type="text"
             onChange={handleChange}
+            onKeyDown={handleKeDown}
              value={value}
              placeholder="Ajouter une todo"
               className="mr-15 flex-fill"/>
-            <button className="btn btn-primary align-items-center">Ajouter</button>
+            <button onClick={handleClick} className="btn btn-primary align-items-center">Ajouter</button>
         </div>
     )
 }
