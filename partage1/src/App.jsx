@@ -16,12 +16,16 @@ function App() {
     setTodoList([...todoList,todo] )
   }
 
+  function deleteTodo(id) {
+    setTodoList(todoList.filter((todo) => todo.id !== id))
+  }
+
   return (
     <div className='d-flex flex-row justify-content-center align-items-center p-20'>
       <div className="card container p-20">
         <h1 className="mb-20">Todo List</h1>
         <AddTodo addTodo= {addTodo}/>
-        <TodoList todoList= {todoList}/>
+        <TodoList todoList= {todoList} deleteTodo={deleteTodo}/>
       </div>
     </div>
   )
